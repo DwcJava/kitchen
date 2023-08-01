@@ -4,15 +4,16 @@
     <parent>
         <groupId>org.dwcj</groupId>
         <artifactId>dwcj-project</artifactId>
-        <version>23.02-SNAPSHOT</version>
+        <version>23.02</version>
     </parent>
+    <version>23.03-SNAPSHOT</version>
     <artifactId>dwcj-kitchen</artifactId>
     <name>dwcj-kitchen</name>
     <dependencies>
         <dependency>
             <groupId>org.dwcj</groupId>
             <artifactId>dwcj-engine</artifactId>
-            <version>23.02-SNAPSHOT</version>
+            <version>23.02</version>
         </dependency>
         <dependency>
             <groupId>com.basis.lib</groupId>
