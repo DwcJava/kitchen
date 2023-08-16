@@ -6,13 +6,11 @@ import com.basis.startup.type.BBjException;
 import org.dwcj.Environment;
 import org.dwcj.bridge.WindowAccessor;
 import org.dwcj.component.AbstractDwcComponent;
-import org.dwcj.component.HasEnable;
-import org.dwcj.component.button.event.ButtonClickEvent;
-import org.dwcj.component.button.sink.ButtonClickEventSink;
 import org.dwcj.component.event.EventDispatcher;
 import org.dwcj.component.event.EventListener;
 import org.dwcj.component.event.sink.EventSinkListenerRegistry;
 import org.dwcj.component.window.AbstractWindow;
+import org.dwcj.concern.HasEnable;
 import org.dwcj.kitchen.fileupload.event.FileUploadEvent;
 import org.dwcj.kitchen.fileupload.sink.FileUploadEventSink;
 
