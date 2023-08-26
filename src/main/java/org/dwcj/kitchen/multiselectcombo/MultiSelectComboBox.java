@@ -20,6 +20,8 @@ import java.util.List;
 public class MultiSelectComboBox extends WebComponent
     implements HasFocus, HasPlaceholder, HasReadOnly, HasClassName, HasStyle, HasAttribute {
 
+  private String label="";
+
   /**
    * Placement enum.
    */
@@ -170,7 +172,7 @@ public class MultiSelectComboBox extends WebComponent
   }
 
   // Properties
-  private final PropertyDescriptor<String> labelProp = PropertyDescriptor.property("label", null);
+
   private final PropertyDescriptor<String> placementProp =
       PropertyDescriptor.property("placement", Placement.BOTTOM.getValue());
   private final PropertyDescriptor<String> expanseProp =
@@ -342,7 +344,7 @@ public class MultiSelectComboBox extends WebComponent
    * @return label value
    */
   public String getLabel() {
-    return super.get(this.labelProp);
+    return this.label;
   }
 
   /**
@@ -352,7 +354,8 @@ public class MultiSelectComboBox extends WebComponent
    * @return the control
    */
   public MultiSelectComboBox setLabel(String label) {
-    super.set(this.labelProp, label);
+    setAttribute("label", label);
+    this.label = label;
     return this;
   }
 
