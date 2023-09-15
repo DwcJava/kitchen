@@ -20,7 +20,7 @@ import java.util.List;
 public class MultiSelectComboBox extends WebComponent
     implements HasFocus, HasPlaceholder, HasReadOnly, HasClassName, HasStyle, HasAttribute {
 
-  private String label="";
+  private String label = "";
 
   /**
    * Placement enum.
