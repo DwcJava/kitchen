@@ -445,7 +445,7 @@ public class MultiSelectComboBox extends WebComponent
    * @return selected value
    */
   public List<String> getSelected() {
-    return super.get(this.selectedProp);
+    return super.get(this.selectedProp, true, List.class);
   }
 
   /**
