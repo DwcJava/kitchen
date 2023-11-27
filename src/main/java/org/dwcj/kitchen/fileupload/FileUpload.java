@@ -5,16 +5,22 @@ import com.basis.bbj.proxies.sysgui.BBjWindow;
 import com.basis.startup.type.BBjException;
 import org.dwcj.Environment;
 import org.dwcj.bridge.WindowAccessor;
-import org.dwcj.component.AbstractDwcComponent;
-import org.dwcj.component.event.EventDispatcher;
-import org.dwcj.component.event.EventListener;
-import org.dwcj.component.event.sink.EventSinkListenerRegistry;
-import org.dwcj.component.window.AbstractWindow;
-import org.dwcj.concern.HasEnable;
+import org.dwcj.component.DwcComponent;
+import org.dwcj.component.event.EventSinkListenerRegistry;
+import org.dwcj.component.window.Window;
+import org.dwcj.concern.HasVisibility;
+import org.dwcj.dispatcher.EventDispatcher;
+import org.dwcj.dispatcher.EventListener;
+import org.dwcj.dispatcher.ListenerRegistration;
 import org.dwcj.kitchen.fileupload.event.FileUploadEvent;
 import org.dwcj.kitchen.fileupload.sink.FileUploadEventSink;
 
-public final class FileUpload extends AbstractDwcComponent implements HasEnable {
+public final class FileUpload extends DwcComponent {
+
+  private BBjFileChooser control;
+  private final EventSinkListenerRegistry<FileUploadEvent> fileUploadEventSinkListenerRegistry =
+      new EventSinkListenerRegistry<>(new FileUploadEventSink(this, getEventDispatcher()),
+          FileUploadEvent.class);
 
   public enum Theme {
     DEFAULT, DANGER, GRAY, INFO, PRIMARY, SUCCESS, WARNING, OUTLINED_DANGER, OUTLINED_DEFAULT, OUTLINED_GRAY, OUTLINED_INFO, OUTLINED_SUCCESS, OUTLINED_PRIMARY, OUTLINED_WARNING
@@ -23,19 +29,15 @@ public final class FileUpload extends AbstractDwcComponent implements HasEnable 
   boolean fAllowMulti = false;
 
   private EventDispatcher dispatcher = new EventDispatcher();
-  private EventSinkListenerRegistry<FileUploadEvent> uploadEventSinkListenerRegistry =
-      new EventSinkListenerRegistry<>(new FileUploadEventSink(this, dispatcher),
-          FileUploadEvent.class);
 
   @Override
-  protected void create(AbstractWindow p) {
+  protected void onCreate(Window p) {
 
     try {
       BBjWindow w = WindowAccessor.getDefault().getBBjWindow(p);
 
       byte[] flags = new byte[] {(byte) 0x00, (byte) 0x06};
       control = w.addFileChooser("", flags);
-      catchUp();
     } catch (Exception e) {
       Environment.logError(e);
     }
@@ -47,22 +49,6 @@ public final class FileUpload extends AbstractDwcComponent implements HasEnable 
     return this;
   }
 
-  @Override
-  public FileUpload setVisible(Boolean visible) {
-    super.setVisible(visible);
-    return this;
-  }
-
-  @Override
-  public FileUpload setEnabled(boolean enabled) {
-    super.setComponentEnabled(enabled);
-    return this;
-  }
-
-  @Override
-  public boolean isEnabled() {
-    return super.isComponentEnabled();
-  }
 
   @Override
   public FileUpload setTooltipText(String text) {
@@ -95,7 +81,7 @@ public final class FileUpload extends AbstractDwcComponent implements HasEnable 
   }
 
   public FileUpload setTheme(FileUpload.Theme theme) {
-    super.setControlTheme(theme);
+    super.setComponentTheme(theme);
     return this;
   }
 
@@ -112,8 +98,8 @@ public final class FileUpload extends AbstractDwcComponent implements HasEnable 
   }
 
   @Override
-  protected void catchUp() throws IllegalAccessException {
-    super.catchUp();
+  protected void onAttach() {
+    super.onAttach();
     setMultipleFilesAllowed(this.fAllowMulti);
   }
 
@@ -124,10 +110,9 @@ public final class FileUpload extends AbstractDwcComponent implements HasEnable 
    * @param listener the event listener to be added
    * @return The component itself
    */
-  public FileUpload addFileUploadListener(EventListener<FileUploadEvent> listener) {
-    this.uploadEventSinkListenerRegistry.addEventListener(listener);
-
-    return this;
+  public ListenerRegistration<FileUploadEvent> addFileUploadListener(
+      EventListener<FileUploadEvent> listener) {
+    return this.fileUploadEventSinkListenerRegistry.addEventListener(listener);
   }
 
   /**
@@ -135,22 +120,12 @@ public final class FileUpload extends AbstractDwcComponent implements HasEnable 
    *
    * @param listener the event listener to be added
    * @return The component itself
-   *
    */
-  public FileUpload onFileUpload(EventListener<FileUploadEvent> listener) {
+  public ListenerRegistration<FileUploadEvent> onFileUpload(
+      EventListener<FileUploadEvent> listener) {
     return addFileUploadListener(listener);
   }
 
-  /**
-   * Removes a {@link FileUploadEvent} listener from the component.
-   *
-   * @param listener the event listener to be removed
-   * @return The component itself
-   */
-  public FileUpload removeClickListener(EventListener<FileUploadEvent> listener) {
-    this.uploadEventSinkListenerRegistry.removeEventListener(listener);
 
-    return this;
-  }
 
 }

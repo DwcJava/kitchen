@@ -4,34 +4,34 @@
     <parent>
         <groupId>org.dwcj</groupId>
         <artifactId>dwcj-project</artifactId>
-        <version>23.04-SNAPSHOT</version>
+        <version>23.06-SNAPSHOT</version>
     </parent>
-    <version>23.04-SNAPSHOT</version>
+    <version>23.06-SNAPSHOT</version>
     <artifactId>dwcj-kitchen</artifactId>
     <name>dwcj-kitchen</name>
     <dependencies>
         <dependency>
             <groupId>org.dwcj</groupId>
             <artifactId>dwcj-engine</artifactId>
-            <version>23.03</version>
+            <version>23.06-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.basis.lib</groupId>
             <artifactId>BBj</artifactId>
             <scope>provided</scope>
-            <version>23.03</version>
+            <version>23.06-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.basis.lib</groupId>
             <artifactId>BBjStartup</artifactId>
             <scope>provided</scope>
-            <version>23.03</version>
+            <version>23.06-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.basis.lib</groupId>
             <artifactId>BBjUtil</artifactId>
             <scope>provided</scope>
-            <version>23.03</version>
+            <version>23.06-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>

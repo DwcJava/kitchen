@@ -3,11 +3,11 @@ package org.dwcj.kitchen.multiselectcombo;
 
 import org.dwcj.annotation.Attribute;
 import org.dwcj.annotation.InlineJavaScript;
-import org.dwcj.component.event.EventListener;
 import org.dwcj.component.webcomponent.PropertyDescriptor;
 import org.dwcj.component.webcomponent.WebComponent;
 import org.dwcj.component.webcomponent.annotation.NodeName;
 import org.dwcj.concern.*;
+import org.dwcj.dispatcher.EventListener;
 import org.dwcj.kitchen.multiselectcombo.event.*;
 
 import java.util.ArrayList;
@@ -18,7 +18,9 @@ import java.util.List;
     attributes = {@Attribute(name = "type", value = "module")})
 @NodeName("bbj-multi-select-combo-box")
 public class MultiSelectComboBox extends WebComponent
-    implements HasFocus, HasPlaceholder, HasReadOnly, HasClassName, HasStyle, HasAttribute {
+    implements HasPlaceholder<MultiSelectComboBox>, HasReadOnly<MultiSelectComboBox>,
+    HasClassName<MultiSelectComboBox>, HasStyle<MultiSelectComboBox>,
+    HasAttribute<MultiSelectComboBox> {
 
   private String label = "";
 
@@ -851,6 +853,7 @@ public class MultiSelectComboBox extends WebComponent
     return this;
   }
 
+
   /**
    * {@inheritDoc}
    */
@@ -874,10 +877,15 @@ public class MultiSelectComboBox extends WebComponent
     return this;
   }
 
+  @Override
+  public MultiSelectComboBox setReadOnly(boolean b) {
+    return null; // TODO
+  }
+
   /**
    * {@inheritDoc}
    */
-  public Boolean isReadOnly() {
+  public boolean isReadOnly() {
     return super.get(readonlyProp);
   }
 

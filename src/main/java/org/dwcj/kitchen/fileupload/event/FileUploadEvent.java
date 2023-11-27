@@ -1,7 +1,10 @@
 package org.dwcj.kitchen.fileupload.event;
 
-import org.dwcj.component.AbstractDwcComponent;
-import org.dwcj.component.event.Event;
+import org.dwcj.component.DwcComponent;
+import org.dwcj.component.button.DwcButton;
+import org.dwcj.component.event.ComponentEvent;
+import org.dwcj.kitchen.fileupload.FileUpload;
+
 
 import java.util.Map;
 
@@ -11,7 +14,7 @@ import java.util.Map;
  * @author Stephan Wald
  * @since 23.02
  */
-public class FileUploadEvent extends Event<AbstractDwcComponent> {
+public class FileUploadEvent extends ComponentEvent<FileUpload> {
 
   /**
    * Creates a new event.
@@ -19,8 +22,8 @@ public class FileUploadEvent extends Event<AbstractDwcComponent> {
    * @param abstractDwcComponent the component
    * @param payload the event map
    */
-  public FileUploadEvent(AbstractDwcComponent abstractDwcComponent, Map<String, Object> payload) {
-    super(abstractDwcComponent, payload);
+  public FileUploadEvent(FileUpload component, Map<String, Object> payload) {
+    super(component, payload);
   }
 
 }

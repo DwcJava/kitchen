@@ -2,7 +2,6 @@ package org.dwcj.kitchen.navbar;
 
 import org.dwcj.annotation.Attribute;
 import org.dwcj.annotation.InlineJavaScript;
-import org.dwcj.component.event.EventListener;
 import org.dwcj.component.webcomponent.PropertyDescriptor;
 import org.dwcj.component.webcomponent.WebComponent;
 import org.dwcj.component.webcomponent.annotation.NodeName;
@@ -10,6 +9,7 @@ import org.dwcj.concern.HasAttribute;
 import org.dwcj.concern.HasClassName;
 import org.dwcj.concern.HasFocus;
 import org.dwcj.concern.HasStyle;
+import org.dwcj.dispatcher.EventListener;
 import org.dwcj.kitchen.navbar.event.NavbarInputEvent;
 import org.dwcj.kitchen.navbar.event.NavbarSelectedEvent;
 
@@ -19,7 +19,8 @@ import java.util.List;
 
 @InlineJavaScript(value = "context://webcomponents/bbj-navbar.js",
     attributes = {@Attribute(name = "type", value = "module")})
-public class Navbar extends WebComponent implements HasFocus, HasClassName, HasStyle, HasAttribute {
+public class Navbar extends WebComponent
+    implements HasClassName<Navbar>, HasStyle<Navbar>, HasAttribute<Navbar> {
 
   /**
    * The control's expanse.

@@ -1,6 +1,6 @@
 package org.dwcj.kitchen.multiselectcombo.event;
 
-import org.dwcj.component.event.Event;
+import org.dwcj.component.event.ComponentEvent;
 import org.dwcj.component.webcomponent.annotation.EventName;
 import org.dwcj.kitchen.multiselectcombo.MultiSelectComboBox;
 
@@ -12,7 +12,7 @@ import java.util.Map;
  * @author ElyasSalar
  */
 @EventName("bbj-opened-changed")
-public class MultiSelectComboBoxOpenedChangedEvent extends Event<MultiSelectComboBox> {
+public class MultiSelectComboBoxOpenedChangedEvent extends ComponentEvent<MultiSelectComboBox> {
 
   /**
    * Creates a new event.

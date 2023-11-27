@@ -7,11 +7,12 @@ import com.basis.bbj.proxyif.SysGuiEventConstants;
 import com.basis.startup.type.BBjException;
 import org.dwcj.App;
 import org.dwcj.Environment;
-import org.dwcj.component.AbstractDwcComponent;
+import org.dwcj.component.DwcComponent;
 import org.dwcj.component.button.event.ButtonClickEvent;
-import org.dwcj.component.event.EventDispatcher;
-import org.dwcj.component.event.sink.AbstractEventSink;
+import org.dwcj.component.event.sink.AbstractDwcEventSink;
+import org.dwcj.dispatcher.EventDispatcher;
 import org.dwcj.exceptions.DwcjRuntimeException;
+import org.dwcj.kitchen.fileupload.FileUpload;
 import org.dwcj.kitchen.fileupload.event.FileUploadEvent;
 
 import java.util.HashMap;
@@ -23,9 +24,9 @@ import java.util.Iterator;
  * @author Stephan Wald
  * @since 23.02
  */
-public final class FileUploadEventSink extends AbstractEventSink {
+public final class FileUploadEventSink extends AbstractDwcEventSink {
 
-  public FileUploadEventSink(AbstractDwcComponent component, EventDispatcher dispatcher) {
+  public FileUploadEventSink(DwcComponent component, EventDispatcher dispatcher) {
     super(component, dispatcher, SysGuiEventConstants.ON_FILECHOOSER_APPROVE);
   }
 
@@ -61,7 +62,7 @@ public final class FileUploadEventSink extends AbstractEventSink {
     }
     map.put("filenames", files);
 
-    FileUploadEvent dwcEv = new FileUploadEvent(getComponent(), map);
+    FileUploadEvent dwcEv = new FileUploadEvent((FileUpload) getComponent(), map);
     getEventDispatcher().dispatchEvent(dwcEv);
   }
 }
