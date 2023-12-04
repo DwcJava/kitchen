@@ -2,7 +2,7 @@ package org.dwcj.kitchen.navbar.event;
 
 
 import org.dwcj.component.event.ComponentEvent;
-import org.dwcj.component.webcomponent.annotation.EventName;
+import org.dwcj.component.element.annotation.EventName;
 import org.dwcj.kitchen.navbar.Navbar;
 
 import java.util.Map;

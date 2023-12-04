@@ -1,7 +1,8 @@
 package org.dwcj.kitchen.navbar.event;
 
 import org.dwcj.component.event.ComponentEvent;
-import org.dwcj.component.webcomponent.annotation.EventName;
+import org.dwcj.component.element.annotation.EventName;
+import org.dwcj.component.element.annotation.EventOptions;
 import org.dwcj.kitchen.navbar.Navbar;
 
 import java.util.Map;
@@ -12,8 +13,8 @@ import java.util.Map;
  * @author ElyasSalar
  */
 @EventName("bbj-selected")
+@EventOptions(map = @EventOptions.EventMapItem(key = "detail", exp = "event.detail"))
 public class NavbarSelectedEvent extends ComponentEvent<Navbar> {
-
   /**
    * Creates a new event.
    *

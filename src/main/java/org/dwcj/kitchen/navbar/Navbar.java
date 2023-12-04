@@ -1,10 +1,11 @@
 package org.dwcj.kitchen.navbar;
 
+import org.dwcj.App;
 import org.dwcj.annotation.Attribute;
 import org.dwcj.annotation.InlineJavaScript;
-import org.dwcj.component.webcomponent.PropertyDescriptor;
-import org.dwcj.component.webcomponent.WebComponent;
-import org.dwcj.component.webcomponent.annotation.NodeName;
+import org.dwcj.component.element.ElementComposite;
+import org.dwcj.component.element.PropertyDescriptor;
+import org.dwcj.component.element.annotation.NodeName;
 import org.dwcj.concern.HasAttribute;
 import org.dwcj.concern.HasClassName;
 import org.dwcj.concern.HasFocus;
@@ -16,10 +17,9 @@ import org.dwcj.kitchen.navbar.event.NavbarSelectedEvent;
 import java.util.List;
 
 @NodeName("bbj-navbar")
-
 @InlineJavaScript(value = "context://webcomponents/bbj-navbar.js",
     attributes = {@Attribute(name = "type", value = "module")})
-public class Navbar extends WebComponent
+public class Navbar extends ElementComposite
     implements HasClassName<Navbar>, HasStyle<Navbar>, HasAttribute<Navbar> {
 
   /**
@@ -137,14 +137,14 @@ public class Navbar extends WebComponent
    * {@inheritDoc}
    */
   public String getAttribute(String attribute) {
-    return super.getComponentAttribute(attribute);
+    return getElement().getAttribute(attribute);
   }
 
   /**
    * {@inheritDoc}
    */
   public Navbar setAttribute(String attribute, String value) {
-    super.setComponentAttribute(attribute, value);
+    getElement().setAttribute(attribute, value);
     return this;
   }
 
@@ -152,14 +152,14 @@ public class Navbar extends WebComponent
    * {@inheritDoc}
    */
   public Object getProperty(String property) {
-    return super.getComponentProperty(property);
+    return getElement().getProperty(property);
   }
 
   /**
    * {@inheritDoc}
    */
   public Navbar setProperty(String property, Object value) {
-    super.setComponentProperty(property, value);
+    getElement().setProperty(property, value);
     return this;
   }
 
@@ -299,6 +299,7 @@ public class Navbar extends WebComponent
    * @return the control
    */
   public Navbar setNavItems(List<NavbarItem> navItems) {
+    App.msgbox("List: " + navItems.size());
     super.set(this.navItemsProp, navItems);
     return this;
   }
@@ -427,7 +428,7 @@ public class Navbar extends WebComponent
    * {@inheritDoc}
    */
   public Navbar removeAttribute(String attribute) {
-    super.removeComponentAttribute(attribute);
+    getElement().removeAttribute(attribute);
     return this;
   }
 
@@ -435,7 +436,7 @@ public class Navbar extends WebComponent
    * {@inheritDoc}
    */
   public Navbar addClassName(String className) {
-    super.addComponentClassName(className);
+    getElement().addClassName(className);
     return this;
   }
 
@@ -443,7 +444,7 @@ public class Navbar extends WebComponent
    * {@inheritDoc}
    */
   public Navbar removeClassName(String className) {
-    super.removeComponentClassName(className);
+    getElement().removeClassName(className);
     return this;
   }
 
@@ -451,7 +452,7 @@ public class Navbar extends WebComponent
    * {@inheritDoc}
    */
   public Navbar focus() {
-    super.callAsyncFunction("focus");
+    getElement().callJsFunctionAsync("focus");
     return this;
   }
 
@@ -459,21 +460,21 @@ public class Navbar extends WebComponent
    * {@inheritDoc}
    */
   public String getStyle(String property) {
-    return super.getComponentStyle(property);
+    return getElement().getStyle(property);
   }
 
   /**
    * {@inheritDoc}
    */
   public String getComputedStyle(String property) {
-    return super.getComponentComputedStyle(property);
+    return getElement().getComputedStyle(property);
   }
 
   /**
    * {@inheritDoc}
    */
   public Navbar setStyle(String property, String value) {
-    super.setComponentStyle(property, value);
+    getElement().setStyle(property, value);
     return this;
   }
 
@@ -481,7 +482,7 @@ public class Navbar extends WebComponent
    * {@inheritDoc}
    */
   public Navbar removeStyle(String property) {
-    super.removeComponentStyle(property);
+    getElement().removeStyle(property);
     return this;
   }
 }

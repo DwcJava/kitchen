@@ -1,4 +1,4 @@
-package samples;
+
 
 import org.dwcj.kitchen.simplerouter.Route;
 import org.junit.jupiter.api.Test;

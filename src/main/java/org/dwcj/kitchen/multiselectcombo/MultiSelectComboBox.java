@@ -3,9 +3,9 @@ package org.dwcj.kitchen.multiselectcombo;
 
 import org.dwcj.annotation.Attribute;
 import org.dwcj.annotation.InlineJavaScript;
-import org.dwcj.component.webcomponent.PropertyDescriptor;
-import org.dwcj.component.webcomponent.WebComponent;
-import org.dwcj.component.webcomponent.annotation.NodeName;
+import org.dwcj.component.element.ElementComposite;
+import org.dwcj.component.element.PropertyDescriptor;
+import org.dwcj.component.element.annotation.NodeName;
 import org.dwcj.concern.*;
 import org.dwcj.dispatcher.EventListener;
 import org.dwcj.kitchen.multiselectcombo.event.*;
@@ -17,7 +17,7 @@ import java.util.List;
     value = "context://webcomponents/bbj-multi-select-combo-box.js",
     attributes = {@Attribute(name = "type", value = "module")})
 @NodeName("bbj-multi-select-combo-box")
-public class MultiSelectComboBox extends WebComponent
+public class MultiSelectComboBox extends ElementComposite
     implements HasPlaceholder<MultiSelectComboBox>, HasReadOnly<MultiSelectComboBox>,
     HasClassName<MultiSelectComboBox>, HasStyle<MultiSelectComboBox>,
     HasAttribute<MultiSelectComboBox> {
@@ -314,14 +314,14 @@ public class MultiSelectComboBox extends WebComponent
    * {@inheritDoc}
    */
   public String getAttribute(String attribute) {
-    return super.getComponentAttribute(attribute);
+    return getElement().getAttribute(attribute);
   }
 
   /**
    * {@inheritDoc}
    */
   public MultiSelectComboBox setAttribute(String attribute, String value) {
-    super.setComponentAttribute(attribute, value);
+    getElement().setAttribute(attribute, value);
     return this;
   }
 
@@ -329,14 +329,14 @@ public class MultiSelectComboBox extends WebComponent
    * {@inheritDoc}
    */
   public Object getProperty(String property) {
-    return super.getComponentProperty(property);
+    return getElement().getProperty(property);
   }
 
   /**
    * {@inheritDoc}
    */
   public MultiSelectComboBox setProperty(String property, Object value) {
-    super.setComponentProperty(property, value);
+    getElement().setProperty(property, value);
     return this;
   }
 
@@ -825,7 +825,7 @@ public class MultiSelectComboBox extends WebComponent
    * {@inheritDoc}
    */
   public MultiSelectComboBox removeAttribute(String attribute) {
-    super.removeComponentAttribute(attribute);
+    getElement().removeAttribute(attribute);
     return this;
   }
 
@@ -833,7 +833,7 @@ public class MultiSelectComboBox extends WebComponent
    * {@inheritDoc}
    */
   public MultiSelectComboBox addClassName(String className) {
-    super.addComponentClassName(className);
+    getElement().addClassName(className);
     return this;
   }
 
@@ -841,7 +841,7 @@ public class MultiSelectComboBox extends WebComponent
    * {@inheritDoc}
    */
   public MultiSelectComboBox removeClassName(String className) {
-    super.removeComponentClassName(className);
+    getElement().removeClassName(className);
     return this;
   }
 
@@ -849,7 +849,7 @@ public class MultiSelectComboBox extends WebComponent
    * {@inheritDoc}
    */
   public MultiSelectComboBox focus() {
-    super.callAsyncFunction("focus");
+    getElement().callJsFunctionAsync("focus");
     return this;
   }
 
@@ -879,7 +879,8 @@ public class MultiSelectComboBox extends WebComponent
 
   @Override
   public MultiSelectComboBox setReadOnly(boolean b) {
-    return null; // TODO
+    super.set(readonlyProp, b);
+    return this;
   }
 
   /**
@@ -893,21 +894,21 @@ public class MultiSelectComboBox extends WebComponent
    * {@inheritDoc}
    */
   public String getStyle(String property) {
-    return super.getComponentStyle(property);
+    return getElement().getStyle(property);
   }
 
   /**
    * {@inheritDoc}
    */
   public String getComputedStyle(String property) {
-    return super.getComponentComputedStyle(property);
+    return getElement().getComputedStyle(property);
   }
 
   /**
    * {@inheritDoc}
    */
   public MultiSelectComboBox setStyle(String property, String value) {
-    super.setComponentStyle(property, value);
+    getElement().setStyle(property, value);
     return this;
   }
 
@@ -915,7 +916,7 @@ public class MultiSelectComboBox extends WebComponent
    * {@inheritDoc}
    */
   public MultiSelectComboBox removeStyle(String property) {
-    super.removeComponentStyle(property);
+    getElement().removeStyle(property);
     return this;
   }
 }
