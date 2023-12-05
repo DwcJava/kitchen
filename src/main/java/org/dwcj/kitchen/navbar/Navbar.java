@@ -1,6 +1,5 @@
 package org.dwcj.kitchen.navbar;
 
-import org.dwcj.App;
 import org.dwcj.annotation.Attribute;
 import org.dwcj.annotation.InlineJavaScript;
 import org.dwcj.component.element.ElementComposite;
@@ -8,7 +7,6 @@ import org.dwcj.component.element.PropertyDescriptor;
 import org.dwcj.component.element.annotation.NodeName;
 import org.dwcj.concern.HasAttribute;
 import org.dwcj.concern.HasClassName;
-import org.dwcj.concern.HasFocus;
 import org.dwcj.concern.HasStyle;
 import org.dwcj.dispatcher.EventListener;
 import org.dwcj.kitchen.navbar.event.NavbarInputEvent;
