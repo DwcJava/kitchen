@@ -299,7 +299,6 @@ public class Navbar extends ElementComposite
    * @return the control
    */
   public Navbar setNavItems(List<NavbarItem> navItems) {
-    App.msgbox("List: " + navItems.size());
     super.set(this.navItemsProp, navItems);
     return this;
   }
